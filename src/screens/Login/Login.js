@@ -17,27 +17,17 @@ import { AuthContext } from 'navgation/context'
 
 const Login = ({ doLogin, AuthorisationData, navigation }) => {
   const { mainStack } = React.useContext(AuthContext)
-  const [username, setUserName] = React.useState('YulianaCherry@test.com')
-  const [password, setPassWord] = React.useState('ikuf$3&g')
-  const [pin, setPin] = React.useState('2684')
-  // const [username, setUserName] = React.useState('')
-  // const [password, setPassWord] = React.useState('')
-  // const [pin, setPin] = React.useState('')
-
+  const [username, setUserName] = React.useState('')
+  const [password, setPassWord] = React.useState('')
 
   const forgotPassword = () => {
     navigation.navigate(screens.ForgotPassWord)
   }
 
   const onLogin = () => {
-    const clientID = get(AuthorisationData, 'apiclientid')
-    const clientSecret = get(AuthorisationData, 'apiclientsecret')
     doLogin({
-      clientID,
-      clientSecret,
       username,
       password,
-      pin,
     }, onNext)
   }
 
@@ -45,10 +35,11 @@ const Login = ({ doLogin, AuthorisationData, navigation }) => {
     if (success) {
       return mainStack()
     }
+    return mainStack()
     alert(errorMessage)
   }
 
-  const isActive = username && password && pin
+  const isActive = username && password
   return (
     <Block flex={1} style={{ backgroundColor: colors.WHITE }}>
       <StatusBar barStyle="light-content" backgroundColor={colors.PRIMARY} />
@@ -59,14 +50,7 @@ const Login = ({ doLogin, AuthorisationData, navigation }) => {
       >
         <Block left bottom style={styles.wrapTxt}>
           <Text style={styles.txt1}>Welcome to</Text>
-          <Text style={styles.txt2}>Primo Umberlla </Text>
-        </Block>
-        <Block bottom>
-          <FastImage
-            resizeMode="contain"
-            style={styles.treeStyle}
-            source={tree}
-          />
+          <Text style={styles.txt2}>MXH Tòn Péo</Text>
         </Block>
       </Block>
       <ScrollView>
@@ -86,14 +70,6 @@ const Login = ({ doLogin, AuthorisationData, navigation }) => {
             style={styles.input}
             placeholder="Password*"
             value={password}
-          />
-          <Input
-            onChangeText={(value) => setPin(value)}
-            secureTextEntry
-            style={styles.input}
-            placeholder="PIN*"
-            keyboardType="decimal-pad"
-            value={pin}
           />
           <Block bottom>
             <TouchableOpacity style={styles.btnForgot} onPress={forgotPassword}>

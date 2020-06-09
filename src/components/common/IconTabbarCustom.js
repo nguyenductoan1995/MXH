@@ -1,24 +1,20 @@
 import React from 'react'
 import { Block } from 'galio-framework'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { get } from 'lodash'
 import { setValue, getWidth } from 'utils/utils'
 import colors from 'utils/colors'
+import screens from 'navgation/screens'
 import VectorIcon from './VectorIcon'
-
 
 export default class IconTabbarCustom extends React.PureComponent {
   get getIcon() {
     const { route } = this.props
     switch (route.name) {
-      case 'Profile':
-        return 'person-outline'
-      case 'Document':
-        return 'file-document-outline'
-      case 'Activity':
-        return 'pen'
-      case 'Dashboard':
-        return 'grid'
+      case screens.NewFeeds:
+        return 'newspaper'
+      case screens.Notification:
+        return 'notifications'
       default:
         return ''
     }
@@ -27,40 +23,23 @@ export default class IconTabbarCustom extends React.PureComponent {
   get getIconType() {
     const { route } = this.props
     switch (route.name) {
-      case 'Profile':
+      case screens.NewFeeds:
+        return 'mdc'
+      case screens.Notification:
         return 'md'
-      case 'Document':
-        return 'mdc'
-      case 'Activity':
-        return 'mdc'
-      case 'Dashboard':
-        return 'simple'
       default:
         return ''
     }
   }
 
-  get getStyleLabel() {
-    const { focused } = this.props
-    switch (focused) {
-      case true:
-        return [styles.labelActive]
-      default:
-        return [styles.labelInActive]
-    }
-  }
 
   get sizeIcon() {
     const { route } = this.props
     switch (route.name) {
-      case 'Profile':
-        return 20
-      case 'Document':
-        return 20
-      case 'Activity':
-        return 20
-      case 'Dashboard':
-        return 14
+      case screens.NewFeeds:
+        return 30
+      case screens.Notification:
+        return 30
       default:
         return 20
     }
@@ -71,7 +50,7 @@ export default class IconTabbarCustom extends React.PureComponent {
     if (focused) {
       return colors.PRIMARY
     }
-    return colors.SMOKE
+    return colors.BLACK87
   }
 
 
@@ -79,14 +58,13 @@ export default class IconTabbarCustom extends React.PureComponent {
     const { focused, size, color, route } = this.props
     const name = get(route, 'name')
     return (
-      <Block row middle styles={styles.containz}>
+      <Block middle styles={styles.contain}>
         <VectorIcon
           color={this.colorIcon}
           size={this.sizeIcon}
           type={this.getIconType}
           name={this.getIcon}
         />
-        <Text style={this.getStyleLabel}>{name}</Text>
       </Block>
     )
   }
@@ -94,7 +72,7 @@ export default class IconTabbarCustom extends React.PureComponent {
 
 const styles = StyleSheet.create({
   contain: {
-    backgroundColor: 'rgba(38, 148, 120,0.2)',
+
   },
   labelInActive: {
     fontFamily: 'Effra-Regular',

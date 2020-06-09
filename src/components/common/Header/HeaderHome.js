@@ -6,7 +6,6 @@ import { Block } from 'galio-framework'
 import FastImage from 'react-native-fast-image'
 import { homeIcon, message } from 'assets/images'
 import { connect } from 'react-redux'
-import { inputSearch } from 'store/home/actions'
 import VectorIcon from '../VectorIcon'
 
 const LeftIcon = React.memo(({ onPressLeft = () => {} }) => (
@@ -73,10 +72,10 @@ class HeaderHome extends React.PureComponent {
   }
 
 onSearch =() => {
-  const { isSearch } = this.state
-  this.setState({ isSearch: !isSearch })
-  const { doInput } = this.props
-  doInput('')
+  // const { isSearch } = this.state
+  // this.setState({ isSearch: !isSearch })
+  // const { doInput } = this.props
+  // doInput('')
 }
 
 render() {
@@ -147,7 +146,7 @@ render() {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  doInput: (evt) => dispatch(inputSearch(evt)),
+  // doInput: (evt) => dispatch(inputSearch(evt)),
 })
 
 export default connect(null, mapDispatchToProps)(HeaderHome)

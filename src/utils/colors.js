@@ -1,7 +1,7 @@
 export default {
   BLACK: 'rgba(0,0,0,1)',
   WHITE: '#FFFFFF',
-  PRIMARY: '#269478',
+  PRIMARY: '#14ABD7',
   SMOKE: 'rgba(58,58,58,0.38)',
   GREY: '#dddddd',
   RED: '#d0021b',
@@ -14,7 +14,7 @@ export default {
   BLACKTEXT: '#4c4c4c',
   GREY97: 'rgb(247,247,247)',
   RED10: 'rgba(208, 2, 27,0.1)',
-  GREEN20: 'rgba(38, 148, 120,0.2)',
-  GREEN10: 'rgba(38, 148, 120,0.1)',
-  BubbleBG: '#c5e6de',
+  GREEN20: 'rgba(182, 233, 250,0.2)',
+  GREEN10: 'rgba(182, 233, 250,0.1)',
+  BubbleBG: '#A1E4F9',
 }

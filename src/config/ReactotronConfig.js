@@ -6,7 +6,7 @@ import url from 'url'
 if (__DEV__) {// eslint-disable-line
   const { hostname } = url.parse(NativeModules.SourceCode.scriptURL)
   Reactotron
-    .configure({ name: 'Accentra', host: hostname })
+    .configure({ name: 'Tòn Péo', host: hostname })
     .useReactNative()
     .use(reactotronRedux())
     .use(trackGlobalErrors())
