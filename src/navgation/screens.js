@@ -10,4 +10,6 @@ export default {
   Home: 'Home',
   AuthStack: 'AuthStack',
   Notification: 'Notification',
+  SignUp: 'SignUp',
+  Profile: 'Profile',
 }

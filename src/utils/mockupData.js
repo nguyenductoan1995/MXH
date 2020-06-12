@@ -42,22 +42,22 @@ export const OnboardingList = [
 ]
 
 export const Profile = [
-  {
-    name: 'Change Password',
-    icon: lock,
-  },
-  {
-    name: 'Change PIN',
-    icon: lock,
-  },
-  {
-    name: 'FAQ',
-    icon: faq,
-  },
-  {
-    name: 'Rewards',
-    icon: rewards,
-  },
+  // {
+  //   name: 'Change Password',
+  //   icon: lock,
+  // },
+  // {
+  //   name: 'Change PIN',
+  //   icon: lock,
+  // },
+  // {
+  //   name: 'FAQ',
+  //   icon: faq,
+  // },
+  // {
+  //   name: 'Rewards',
+  //   icon: rewards,
+  // },
   {
     name: 'Referrals',
     icon: referrals,

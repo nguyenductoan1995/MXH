@@ -5,6 +5,7 @@ import { setValue, getWidth, getHeight } from 'utils/utils'
 import VectorIcon from 'components/common/VectorIcon'
 import FastImage from 'react-native-fast-image'
 import { Profile } from 'utils/mockupData'
+import colors from 'utils/colors'
 
 const Item = React.memo(({ item, onPress = () => {} }) => (
   <TouchableOpacity onPress={onPress} style={styles.item}>
@@ -12,7 +13,8 @@ const Item = React.memo(({ item, onPress = () => {} }) => (
       <Block center row>
         <FastImage
           source={item.icon}
-          style={styles.icon}
+          tintColor={colors.PRIMARY}
+          style={[styles.icon]}
         />
         <Text style={styles.txt}>{item.name}</Text>
       </Block>

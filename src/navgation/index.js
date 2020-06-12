@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { Login, ForgotPassWord, SetNewPassWord, LoginWithTouchID } from 'screens/Login'
+import { Login, ForgotPassWord, SetNewPassWord, LoginWithTouchID, Signup } from 'screens/Login'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { IconTabbarCustom } from 'components/common'
 import { getHeight, setValue } from 'utils/utils'
@@ -10,6 +10,8 @@ import { connect } from 'react-redux'
 import { get } from 'lodash'
 import { NewFeeds } from 'screens/NewFeeds'
 import { Notification } from 'screens/Notification'
+import { Message } from 'screens/Message'
+import { Profile } from 'screens/Profile'
 import screens from './screens'
 import { AuthContext } from './context'
 
@@ -43,8 +45,8 @@ function Home() {
     >
       <Tab.Screen name={screens.NewFeeds} component={NewFeeds} />
       <Tab.Screen name={screens.Notification} component={Notification} />
-      {/*   <Tab.Screen name={screens.Document} component={Document} />
-      <Tab.Screen name={screens.Profile} component={Profile} /> */}
+      <Tab.Screen name={screens.Profile} component={Profile} />
+      {/* <Tab.Screen name={screens.Profile} component={Profile} /> */}
 
     </Tab.Navigator>
   )
@@ -68,6 +70,11 @@ function AuthStack() {
         options={{ headerMode: 'none' }}
         name={screens.SetNewPassWord}
         component={SetNewPassWord}
+      />
+      <Stack.Screen
+        options={{ headerMode: 'none' }}
+        name={screens.SignUp}
+        component={Signup}
       />
     </Stack.Navigator>
   )
@@ -121,6 +128,7 @@ function App({ logged }) {
               name={screens.AuthStack}
               component={AuthStack}
             />
+
           ) : (
             <>
               {/* Home */}
@@ -128,6 +136,11 @@ function App({ logged }) {
                 options={{ headerMode: 'none' }}
                 name={screens.Home}
                 component={Home}
+              />
+              <Stack.Screen
+                options={{ headerMode: 'none' }}
+                name={screens.Message}
+                component={Message}
               />
             </>
           ) }

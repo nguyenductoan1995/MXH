@@ -15,6 +15,8 @@ export default class IconTabbarCustom extends React.PureComponent {
         return 'newspaper'
       case screens.Notification:
         return 'notifications'
+      case screens.Profile:
+        return 'account'
       default:
         return ''
     }
@@ -27,6 +29,8 @@ export default class IconTabbarCustom extends React.PureComponent {
         return 'mdc'
       case screens.Notification:
         return 'md'
+      case screens.Profile:
+        return 'mdc'
       default:
         return ''
     }
@@ -41,7 +45,7 @@ export default class IconTabbarCustom extends React.PureComponent {
       case screens.Notification:
         return 30
       default:
-        return 20
+        return 30
     }
   }
 

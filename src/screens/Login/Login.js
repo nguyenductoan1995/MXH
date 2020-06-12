@@ -13,12 +13,32 @@ import { get } from 'lodash'
 import { connect } from 'react-redux'
 import { login } from 'store/Authorisation/actions'
 import { AuthContext } from 'navgation/context'
+import auth from '@react-native-firebase/auth'
 
 
-const Login = ({ doLogin, AuthorisationData, navigation }) => {
+function Login({ doLogin, AuthorisationData, navigation }) {
   const { mainStack } = React.useContext(AuthContext)
-  const [username, setUserName] = React.useState('')
-  const [password, setPassWord] = React.useState('')
+  const [username, setUserName] = React.useState('toan@gmail.com')
+  const [password, setPassWord] = React.useState('toan123')
+
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = React.useState(true)
+  const [user, setUser] = React.useState()
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    console.tron.log(user)
+    if (user) {
+      mainStack()
+    }
+    setUser(user)
+    if (initializing) setInitializing(false)
+  }
+
+  React.useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
+    return subscriber // unsubscribe on unmount
+  }, [])
 
   const forgotPassword = () => {
     navigation.navigate(screens.ForgotPassWord)
@@ -26,9 +46,12 @@ const Login = ({ doLogin, AuthorisationData, navigation }) => {
 
   const onLogin = () => {
     doLogin({
-      username,
-      password,
-    }, onNext)
+      params: {
+        username,
+        password,
+      },
+      callback: () => onNext(),
+    })
   }
 
   const onNext = ({ success, errorMessage }) => {
@@ -39,7 +62,12 @@ const Login = ({ doLogin, AuthorisationData, navigation }) => {
     alert(errorMessage)
   }
 
+  const onSignUp = () => {
+    navigation.navigate(screens.SignUp)
+  }
+
   const isActive = username && password
+  if (initializing) return null
   return (
     <Block flex={1} style={{ backgroundColor: colors.WHITE }}>
       <StatusBar barStyle="light-content" backgroundColor={colors.PRIMARY} />
@@ -71,7 +99,10 @@ const Login = ({ doLogin, AuthorisationData, navigation }) => {
             placeholder="Password*"
             value={password}
           />
-          <Block bottom>
+          <Block row bottom>
+            <TouchableOpacity style={styles.btnSignup} onPress={onSignUp}>
+              <Text style={styles.txtForgot}>Sign up</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.btnForgot} onPress={forgotPassword}>
               <Text style={styles.txtForgot}>Forgot Password</Text>
             </TouchableOpacity>
@@ -153,6 +184,10 @@ const styles = StyleSheet.create({
   btnLogin: { position: 'absolute', bottom: 0 },
   btnForgot: {
     marginTop: setValue(20),
+  },
+  btnSignup: {
+    marginTop: setValue(20),
+    marginRight: getWidth(10),
   },
   txtForgot: {
     fontFamily: 'Effra-Regular',

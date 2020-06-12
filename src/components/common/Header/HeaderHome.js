@@ -17,6 +17,7 @@ const LeftIcon = React.memo(({ onPressLeft = () => {} }) => (
     <FastImage
       resizeMode="contain"
       style={styles.iconLeft}
+      tintColor="green"
       source={homeIcon}
     />
   </TouchableOpacity>
